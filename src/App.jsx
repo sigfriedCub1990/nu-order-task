@@ -4,7 +4,8 @@ import './App.css'
 import AsyncSearchComponent from './components/AsyncSearchComponent'
 
 import useDebounce from './hooks/useDebounce'
-const DEBOUNCE_DELAY = 500
+
+import { DEBOUNCE_DELAY } from './utils/constants'
 
 function App() {
   const [searchTerm, setSearchTerm] = React.useState('')
