@@ -1,4 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+@import 'loaders.css/src/animations/ball-grid-pulse.scss';
+
 body {
   margin: 0;
   font-family: Roboto, sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -11,4 +13,12 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.loader-hidden {
+  display: none;
+}
+.loader-active {
+  display: block;
+  background-color: #f0eeee;
 }
