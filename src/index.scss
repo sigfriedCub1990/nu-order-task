@@ -8,6 +8,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
 }
 
 code {
@@ -18,6 +19,7 @@ code {
 .loader-hidden {
   display: none;
 }
+
 .loader-active {
   display: block;
   background-color: #f0eeee;
