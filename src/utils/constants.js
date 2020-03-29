@@ -1,3 +1,5 @@
 const API_ROOT_PATH = 'https://api.github.com/search'
 
-export default API_ROOT_PATH
+const DEBOUNCE_DELAY = 500
+
+export default { API_ROOT_PATH, DEBOUNCE_DELAY }
