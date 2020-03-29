@@ -122,6 +122,11 @@ const Label = styled('label')({
   marginBottom: 10,
 })
 
+const Title = styled('h1')({
+  marginBottom: 10,
+  fontSize: '1.5rem',
+})
+
 const BaseMenu = styled('ul')(
   {
     padding: 0,
@@ -197,8 +202,6 @@ function XIcon() {
   )
 }
 
-const itemToString = (i) => (i ? i.name : '')
-
 export {
   Menu,
   ControllerButton,
@@ -210,6 +213,6 @@ export {
   ArrowIcon,
   XIcon,
   Label,
+  Title,
   css,
-  itemToString,
 }
