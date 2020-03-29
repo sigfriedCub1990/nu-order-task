@@ -19,9 +19,10 @@ import {
 } from '../../utils/shared'
 
 const AsyncSearchComponent = ({
+  handleOnChange,
+  handleOnIssueSelect,
   searchTerm,
   currentPage,
-  handleOnChange,
   changeCurrentPage,
 }) => {
   return (
@@ -31,14 +32,16 @@ const AsyncSearchComponent = ({
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
-        alignSelf: 'flex-start',
+        alignSelf: 'center',
         textAlign: 'center',
         marginTop: 50,
       })}
     >
       <Downshift
-        itemToString={(item) => item.title}
-        onChange={({ id, title }) => console.log(id)}
+        itemToString={(item) => (!item ? '' : item.title)}
+        onChange={(item) =>
+          !item ? handleOnIssueSelect(null) : handleOnIssueSelect(item.body)
+        }
       >
         {({
           inputValue,
