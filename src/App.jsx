@@ -1,11 +1,13 @@
-import React from 'react'
+import React, { Suspense } from 'react'
 import './App.css'
-
-import AsyncSearchComponent from './components/AsyncSearchComponent'
 
 import useDebounce from './hooks/useDebounce'
 
 import { DEBOUNCE_DELAY } from './utils/constants'
+
+const AsyncSearchComponent = React.lazy(() =>
+  import('./components/AsyncSearchComponent'),
+)
 
 function App() {
   const [searchTerm, setSearchTerm] = React.useState('')
@@ -27,12 +29,14 @@ function App() {
 
   return (
     <div className="App">
-      <AsyncSearchComponent
-        handleOnChange={handleOnChange}
-        searchTerm={debouncedSearchTerm}
-        currentPage={currentPage}
-        changeCurrentPage={changeCurrentPage}
-      />
+      <Suspense fallback={<div>Loading...</div>}>
+        <AsyncSearchComponent
+          handleOnChange={handleOnChange}
+          searchTerm={debouncedSearchTerm}
+          currentPage={currentPage}
+          changeCurrentPage={changeCurrentPage}
+        />
+      </Suspense>
     </div>
   )
 }
