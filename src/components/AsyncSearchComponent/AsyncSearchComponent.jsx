@@ -89,8 +89,8 @@ const AsyncSearchComponent = ({
                       searchTerm={searchTerm}
                       currentPage={currentPage}
                     >
-                      {({ loading, error, data = { items: [] } }) => {
-                        if (loading) {
+                      {({ data = { items: [] }, error, status }) => {
+                        if (status === 'loading') {
                           return <Item disabled>Loading...</Item>
                         }
 
