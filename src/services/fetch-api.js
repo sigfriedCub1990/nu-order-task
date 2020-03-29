@@ -1,6 +1,6 @@
-import ky from 'ky'
+import ky from 'ky-universal'
 
-import API_ROOT_PATH from '../utils/constants'
+import { API_ROOT_PATH } from '../utils/constants'
 
 const FetchApiService = ky.extend({
   headers: {
