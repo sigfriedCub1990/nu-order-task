@@ -25,6 +25,35 @@ const AsyncSearchComponent = ({
   currentPage,
   changeCurrentPage,
 }) => {
+  const renderItems = (data, getItemProps, highlightedIndex, selectedItem) => {
+    return data?.items.map((item, index) => (
+      <Item
+        key={item.id}
+        {...getItemProps({
+          item,
+          index,
+          isActive: highlightedIndex === index,
+          isSelected: selectedItem === item,
+        })}
+      >
+        <ItemTitle>{item.title}</ItemTitle>
+        <LabelsContainer>
+          {item.labels.length === 0 ? (
+            <ItemLabel>No labels for this issue</ItemLabel>
+          ) : (
+            item.labels.map(({ id, name, color }) => {
+              return (
+                <ItemLabel key={id} color={color}>
+                  {name}
+                </ItemLabel>
+              )
+            })
+          )}
+        </LabelsContainer>
+      </Item>
+    ))
+  }
+
   return (
     <div
       {...css({
@@ -109,32 +138,12 @@ const AsyncSearchComponent = ({
                           return <Item disabled>No issues found</Item>
                         }
 
-                        return data?.items.map((item, index) => (
-                          <Item
-                            key={item.id}
-                            {...getItemProps({
-                              item,
-                              index,
-                              isActive: highlightedIndex === index,
-                              isSelected: selectedItem === item,
-                            })}
-                          >
-                            <ItemTitle>{item.title}</ItemTitle>
-                            <LabelsContainer>
-                              {item.labels.length === 0 ? (
-                                <ItemLabel>No labels for this issue</ItemLabel>
-                              ) : (
-                                item.labels.map(({ id, name, color }) => {
-                                  return (
-                                    <ItemLabel key={id} color={color}>
-                                      {name}
-                                    </ItemLabel>
-                                  )
-                                })
-                              )}
-                            </LabelsContainer>
-                          </Item>
-                        ))
+                        return renderItems(
+                          data,
+                          getItemProps,
+                          highlightedIndex,
+                          selectedItem,
+                        )
                       }}
                     </ResultsComponent>
                   )
