@@ -33,7 +33,7 @@ function App() {
   const handleOnIssueSelect = (input) => setIssueBody(input)
 
   return (
-    <div className="App">
+    <div className="App" role="main">
       <Suspense fallback={<LoadingComponent />}>
         <AsyncSearchComponent
           handleOnChange={handleOnChange}

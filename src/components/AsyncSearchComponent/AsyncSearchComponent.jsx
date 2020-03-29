@@ -5,7 +5,7 @@ import Downshift from 'downshift'
 import ResultsComponent from '../ResultsComponent'
 
 import {
-  Label,
+  Title,
   Menu,
   ControllerButton,
   Input,
@@ -86,7 +86,7 @@ const AsyncSearchComponent = ({
         }) => {
           return (
             <div {...css({ width: 450, margin: 'auto', position: 'relative' })}>
-              <Label {...getLabelProps()}>Search an issue</Label>
+              <Title {...getLabelProps()}>Search an issue</Title>
               <div {...css({ position: 'relative' })}>
                 <Input
                   {...getInputProps({
@@ -108,7 +108,7 @@ const AsyncSearchComponent = ({
                   </ControllerButton>
                 )}
               </div>
-              <Menu {...getMenuProps({ isOpen })}>
+              <Menu role="menu" {...getMenuProps({ isOpen })}>
                 {(() => {
                   if (!isOpen) {
                     return null
