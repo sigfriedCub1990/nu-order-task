@@ -13,7 +13,7 @@ const Item = styled('li')(
     justifyContent: 'space-around',
     border: 'none',
     height: 'auto',
-    width: '100%',
+    width: 462,
     textAlign: 'left',
     borderTop: 'none',
     lineHeight: '1em',
