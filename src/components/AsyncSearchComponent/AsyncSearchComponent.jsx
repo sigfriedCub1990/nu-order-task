@@ -31,11 +31,15 @@ const AsyncSearchComponent = ({
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
+        alignSelf: 'flex-start',
         textAlign: 'center',
         marginTop: 50,
       })}
     >
-      <Downshift onChange={(selection) => console.log(selection)}>
+      <Downshift
+        itemToString={(item) => item.title}
+        onChange={({ id, title }) => console.log(id)}
+      >
         {({
           inputValue,
           getInputProps,
@@ -102,36 +106,32 @@ const AsyncSearchComponent = ({
                           return <Item disabled>No issues found</Item>
                         }
 
-                        return data?.items.map(
-                          ({ id, title: item, labels }, index) => (
-                            <Item
-                              key={id}
-                              {...getItemProps({
-                                item,
-                                index,
-                                isActive: highlightedIndex === index,
-                                isSelected: selectedItem === item,
-                              })}
-                            >
-                              <ItemTitle>{item}</ItemTitle>
-                              <LabelsContainer>
-                                {labels.length === 0 ? (
-                                  <ItemLabel>
-                                    No labels for this issue
-                                  </ItemLabel>
-                                ) : (
-                                  labels.map(({ id, name, color }) => {
-                                    return (
-                                      <ItemLabel key={id} color={color}>
-                                        {name}
-                                      </ItemLabel>
-                                    )
-                                  })
-                                )}
-                              </LabelsContainer>
-                            </Item>
-                          ),
-                        )
+                        return data?.items.map((item, index) => (
+                          <Item
+                            key={item.id}
+                            {...getItemProps({
+                              item,
+                              index,
+                              isActive: highlightedIndex === index,
+                              isSelected: selectedItem === item,
+                            })}
+                          >
+                            <ItemTitle>{item.title}</ItemTitle>
+                            <LabelsContainer>
+                              {item.labels.length === 0 ? (
+                                <ItemLabel>No labels for this issue</ItemLabel>
+                              ) : (
+                                item.labels.map(({ id, name, color }) => {
+                                  return (
+                                    <ItemLabel key={id} color={color}>
+                                      {name}
+                                    </ItemLabel>
+                                  )
+                                })
+                              )}
+                            </LabelsContainer>
+                          </Item>
+                        ))
                       }}
                     </ResultsComponent>
                   )
