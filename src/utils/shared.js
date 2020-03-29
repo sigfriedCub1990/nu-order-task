@@ -116,6 +116,7 @@ const Input = styled('input')(
 )
 
 const Label = styled('label')({
+  fontSize: 20,
   fontWeight: 'bold',
   display: 'block',
   marginBottom: 10,
